@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-display: 'Reem Kufi', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans Arabic', system-ui, 'Segoe UI', Tahoma, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-danger: var(--danger);
+}
+
+:root {
+  color-scheme: light;
+  --bg: #faf5ee;
+  --surface: #ffffff;
+  --surface-2: #f2e8db;
+  --ink: #2a1d16;
+  --muted: #65554a;
+  --line: #e3d5c4;
+  --accent: #96481e;
+  --accent-ink: #fff8f0;
+  --accent-soft: #f3dfcb;
+  --ok: #2f6b3f;
+  --danger: #a3261d;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #15100d;
+  --surface: #1f1814;
+  --surface-2: #2a211b;
+  --ink: #f3e9dd;
+  --muted: #bcab9b;
+  --line: #3a2e26;
+  --accent: #e0a165;
+  --accent-ink: #1a120d;
+  --accent-soft: #3a2a1e;
+  --ok: #7fc793;
+  --danger: #ff9b8f;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.35;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@layer components {
+  /* سلة الطلب: بتدخل من ناحية الشمال (نهاية السطر في RTL) */
+  .cart-drawer[open] {
+    animation: drawer-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cart-drawer[open]::backdrop {
+    animation: backdrop-in 0.3s ease;
+  }
+
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding-inline: 1.75rem;
+    font-weight: 600;
+    transition:
+      filter 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+  }
+
+  .field {
+    min-height: 3rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    color: var(--ink);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .field::placeholder {
+    color: color-mix(in srgb, var(--muted) 75%, transparent);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .field[aria-invalid='true'] {
+    border-color: var(--danger);
+  }
+
+  .field[aria-invalid='true']:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 30%, transparent);
+  }
+}

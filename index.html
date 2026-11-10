@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حَبّة | قهوة مختصة في المعادي، القاهرة</title>
+    <meta
+      name="description"
+      content="حَبّة كافيه قهوة مختصة في المعادي: بن محمَّص طازة كل أسبوع، فطار بيتعمل قدامك، وحلويات من فرننا. احجز ترابيزتك أونلاين."
+    />
+    <meta name="author" content="حَبّة" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#FAF5EE" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta property="og:site_name" content="حَبّة" />
+    <meta property="og:title" content="حَبّة | قهوة مختصة في المعادي" />
+    <meta
+      property="og:description"
+      content="بن محمَّص طازة كل أسبوع، فطار بيتعمل قدامك، وحلويات من فرننا. في قلب المعادي."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&h=630&q=70"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="حَبّة | قهوة مختصة في المعادي" />
+    <meta
+      name="twitter:description"
+      content="بن محمَّص طازة كل أسبوع، فطار بيتعمل قدامك، وحلويات من فرننا."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&h=630&q=70"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <!-- صورة الهيرو هي الـ LCP، فبنحمّلها بدري. لازم تفضل مطابقة للـ srcset في Hero.tsx -->
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      imagesrcset="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=640&q=65 640w, https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1024&q=65 1024w, https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=65 1600w, https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=2200&q=65 2200w"
+      imagesizes="100vw"
+    />
+
+    <!-- بيطبّق الوضع الليلي قبل أول رسم للصفحة عشان مايحصلش وميض -->
+    <script>
+      ;(function () {
+        try {
+          var saved = localStorage.getItem('habba-theme')
+          var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+          if (dark) {
+            document.documentElement.classList.add('dark')
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#15100D')
+          }
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>الصفحة دي محتاجة JavaScript عشان تشتغل.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
